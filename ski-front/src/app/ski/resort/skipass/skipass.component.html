@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Days</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of skiPass">
+                    <td>{{item?.duration}}</td>
+                    <td>{{item?.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-8">
+        <form [formGroup]="reservationForm" (submit)="onSubmit()">
+            <div class="form-group row">
+                <label for="firstName" class="col-3 col-form-label text-right">First Name:</label>
+                <div class="col-9">
+                    <input id="firstName" class="form-control" type="text" name="firstName" formControlName="firstName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lastName" class="col-3 col-form-label text-right">Last Name:</label>
+                <div class="col-9">
+                    <input id="lastName" class="form-control" type="text" name="lastName" formControlName="lastName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-3 col-form-label text-right">From:</label>
+                <div class="col-3">
+                    <input id="dateFrom" class="form-control" name="dateFrom" ngbDatepicker #df="ngbDatepicker" (click)="df.toggle()" formControlName="dateFrom" [minDate]="minDateFrom" [maxDate]="maxDateFrom" (dateSelect)="dateFromChange()">
+                </div>
+                <label class="col-3 col-form-label text-right">To:</label>
+                <div class="col-3">
+                    <input id="dateTo" class="form-control" name="dateTo" ngbDatepicker #dt="ngbDatepicker" (click)="dt.toggle()" formControlName="dateTo" [minDate]="minDateTo" (dateSelect)="dateToChange()">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="price" class="col-3 col-form-label text-right">Price:</label>
+                <div class="col-9">
+                    <input id="price" class="form-control" type="number" name="price" disabled value="{{dayDifference * skiPass[0].price}}">
+                </div>
+            </div>
+            <div class="float-right">
+                <button type="submit" class="btn btn-primary" [disabled]="reservationForm.invalid">Reserve</button>
+            </div>
+        </form>
+    </div>
+</div>

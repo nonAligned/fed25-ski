@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-12">
+        <br>
+        <ski-info [resort]="resort"></ski-info>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-12">
+        <ngb-tabset type="tabs" justify="justified">
+            <ngb-tab title="Tracks">
+                <ng-template ngbTabContent>
+                    <ski-tracks [tracks]="tracks" (sortChange)="updateSort($event)"></ski-tracks>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Weather">
+                <ng-template ngbTabContent>
+                    <br>
+                    <ski-weather [weather]="weather"></ski-weather>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Ski pass">
+                <ng-template ngbTabContent>
+                    <br>
+                    <ngb-alert *ngIf="success" (close)="close('success')" type="success" [dismissible]="true">You have successfully made a reservation!</ngb-alert>
+                    <ngb-alert *ngIf="fail" (close)="close('fail')" type="danger" [dismissible]="true">Something went wrong!</ngb-alert>
+                    <ski-skipass [skiPass]="skiPass" (reserve)="makeReservation($event)"></ski-skipass>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+        
+    </div>
+</div>

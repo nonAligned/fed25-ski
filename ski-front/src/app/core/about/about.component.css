@@ -1,0 +1,14 @@
+.bkg {
+    position: relative;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, rgb(35, 144, 218), rgb(189, 219, 236));
+}
+
+.about {
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+    margin-top: 45vh;
+    font-size: 3em;
+    font-weight: bold;
+}
